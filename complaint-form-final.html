@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มร้องเรียนร้องทุกข์ - จ.ภูเก็ต เขต 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-orange: #FF6614;
+            --primary-dark: #0B2B41;
+            --accent-light: #FF8844;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-primary: #2d3436;
+            --text-secondary: #636e72;
+            --border-color: #e1e8ed;
+            --success-green: #00b894;
+            --danger-red: #d63031;
+            --warning-yellow: #FFB319;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a4d6d 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-light) 100%);
+            padding: 3rem 2.5rem;
+            border-radius: 24px 24px 0 0;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .header h1 {
+            font-family: 'Bai Jamjuree', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .representative {
+            display: inline-block;
+            background: var(--primary-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 0 0 24px 24px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Bai Jamjuree', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-orange);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--accent-light));
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(255, 102, 20, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+            font-size: 1rem;
+        }
+
+        .required {
+            color: var(--danger-red);
+            margin-left: 0.25rem;
+        }
+
+        .label-hint {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.875rem 1.125rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Sarabun', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="url"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 4px rgba(255, 102, 20, 0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L6 6L11 1" stroke="%23636e72" stroke-width="2" stroke-linecap="round"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 3rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary-orange);
+            background: rgba(255, 102, 20, 0.03);
+            transform: translateX(4px);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 0.875rem;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-orange);
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .map-input-helper {
+            background: rgba(255, 102, 20, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--primary-orange);
+        }
+
+        .map-input-helper strong {
+            color: var(--primary-orange);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-input-helper ol {
+            margin-left: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .urgency-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .urgency-card {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .urgency-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .urgency-card input[type="radio"] {
+            margin-right: 0.875rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-orange);
+        }
+
+        .urgency-card.level-critical {
+            border-color: var(--danger-red);
+        }
+
+        .urgency-card.level-critical:hover {
+            background: rgba(214, 48, 49, 0.03);
+        }
+
+        .urgency-card.level-high {
+            border-color: var(--warning-yellow);
+        }
+
+        .urgency-card.level-high:hover {
+            background: rgba(255, 179, 25, 0.03);
+        }
+
+        .urgency-card.level-medium {
+            border-color: #3498db;
+        }
+
+        .urgency-card.level-medium:hover {
+            background: rgba(52, 152, 219, 0.03);
+        }
+
+        .urgency-card.level-low {
+            border-color: var(--success-green);
+        }
+
+        .urgency-card.level-low:hover {
+            background: rgba(0, 184, 148, 0.03);
+        }
+
+        .submit-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-light) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-family: 'Bai Jamjuree', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 102, 20, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(255, 102, 20, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+
+        .footer-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .success-message,
+        .error-message {
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            display: none;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            background: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid var(--success-green);
+            color: var(--success-green);
+        }
+
+        .error-message {
+            background: rgba(214, 48, 49, 0.1);
+            border-left: 4px solid var(--danger-red);
+            color: var(--danger-red);
+        }
+
+        .info-box {
+            background: rgba(255, 102, 20, 0.1);
+            border-left: 4px solid var(--primary-orange);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .info-box strong {
+            color: var(--primary-orange);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .header {
+                padding: 2rem 1.5rem;
+                border-radius: 16px 16px 0 0;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .urgency-levels {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo_พรรคประชาชน-04.png" alt="โลโก้พรรคประชาชน">
+                </div>
+                <h1>แบบฟอร์มร้องเรียนร้องทุกข์</h1>
+                <p>จังหวัดภูเก็ต เขต 2</p>
+                <p>ตำบลวิชิต • ราไวย์ • ฉลอง • กะรน • ป่าตอง • กมลา</p>
+                <div class="representative">สส.เฉลิมพงศ์ แสงดี | พรรคประชาชน</div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                ✅ ส่งเรื่องร้องเรียนสำเร็จ! ข้อมูลถูกส่งไปยังอีเมลแล้ว ทีมงานจะติดต่อกลับโดยเร็วที่สุด
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                ❌ เกิดข้อผิดพลาด กรุณาตรวจสอบข้อมูลและลองใหม่อีกครั้ง
+            </div>
+
+            <div class="info-box">
+                <strong>📧 หมายเหตุ:</strong> เมื่อกดส่ง ข้อมูลจะถูกส่งไปยังอีเมลโดยตรง (รวมถึงรูปภาพและรายละเอียดทั้งหมด)
+            </div>
+
+            <form id="complaintForm">
+                <!-- Section 1: ข้อมูลผู้แจ้ง -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-number">1</span>
+                        <span>ข้อมูลผู้แจ้ง</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullname">ชื่อ-นามสกุล <span class="required">*</span></label>
+                        <input type="text" id="fullname" name="fullname" required placeholder="กรุณากรอกชื่อ-นามสกุล">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">เบอร์โทรศัพท์ <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="08X-XXX-XXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">อีเมล <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="example@email.com">
+                        <span class="label-hint">จำเป็นต้องกรอกเพื่อรับการติดต่อกลับ</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Line ID / Facebook</label>
+                        <input type="text" id="contact" name="contact" placeholder="สำหรับติดต่อกลับ (ถ้ามี)">
+                    </div>
+                </div>
+
+                <!-- Section 2: สถานที่เกิดปัญหา -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-number">2</span>
+                        <span>สถานที่เกิดปัญหา</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="area">พื้นที่ที่เกิดปัญหา <span class="required">*</span></label>
+                        <select id="area" name="area" required>
+                            <option value="">-- เลือกพื้นที่ --</option>
+                            <option value="วิชิต">ตำบลวิชิต</option>
+                            <option value="ราไวย์">ตำบลราไวย์</option>
+                            <option value="ฉลอง">ตำบลฉลอง</option>
+                            <option value="กะรน">ตำบลกะรน</option>
+                            <option value="ป่าตอง">ตำบลป่าตอง</option>
+                            <option value="กมลา">ตำบลกมลา</option>
+                            <option value="อื่นๆ">พื้นที่อื่นๆ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="otherAreaGroup" style="display: none;">
+                        <label for="otherArea">ระบุพื้นที่อื่นๆ <span class="required">*</span></label>
+                        <input type="text" id="otherArea" name="otherArea" placeholder="กรุณาระบุพื้นที่">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">ที่อยู่/สถานที่เกิดปัญหาโดยละเอียด <span class="required">*</span></label>
+                        <textarea id="address" name="address" required placeholder="เช่น บ้านเลขที่ หมู่ที่ ถนน ซอย สถานที่สำคัญใกล้เคียง"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mapLink">ปักหมุดแผนที่ (Google Maps Link)</label>
+                        <input type="url" id="mapLink" name="mapLink" placeholder="https://maps.app.goo.gl/...">
+                        <div class="map-input-helper">
+                            <strong>📍 วิธีแปะลิงก์ Google Maps:</strong>
+                            <ol>
+                                <li>เปิดแอป Google Maps บนมือถือ</li>
+                                <li>กดค้างบนแผนที่เพื่อปักหมุด</li>
+                                <li>กดที่ "แชร์" หรือ "Share"</li>
+                                <li>เลือก "คัดลอกลิงก์" หรือ "Copy link"</li>
+                                <li>นำมาวางในช่องนี้</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: รายละเอียดปัญหา -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-number">3</span>
+                        <span>รายละเอียดปัญหา</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">หมวดหมู่ปัญหา <span class="required">*</span></label>
+                        <select id="category" name="category" required>
+                            <option value="">-- เลือกหมวดหมู่ --</option>
+                            <option value="โครงสร้างพื้นฐาน">โครงสร้างพื้นฐาน (ถนน ไฟฟ้า ประปา)</option>
+                            <option value="สาธารณสุข">สาธารณสุข</option>
+                            <option value="เบาะแสทุจริต">เบาะแสทุจริต</option>
+                            <option value="เบาะแสยาเสพติด">เบาะแสยาเสพติด</option>
+                            <option value="สิ่งแวดล้อม">สิ่งแวดล้อม (ขยะ น้ำเสีย มลพิษ)</option>
+                            <option value="ความปลอดภัย">ความปลอดภัย</option>
+                            <option value="สวัสดิการสังคม">สวัสดิการสังคม</option>
+                            <option value="การศึกษา">การศึกษา</option>
+                            <option value="การจราจร">การจราจร</option>
+                            <option value="อื่นๆ">อื่นๆ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="otherCategoryGroup" style="display: none;">
+                        <label for="otherCategory">ระบุหมวดหมู่อื่นๆ <span class="required">*</span></label>
+                        <input type="text" id="otherCategory" name="otherCategory" placeholder="กรุณาระบุหมวดหมู่">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="details">รายละเอียดปัญหา <span class="required">*</span></label>
+                        <textarea id="details" name="details" required placeholder="กรุณาอธิบายปัญหาที่พบโดยละเอียด เช่น อาการ ความรุนแรง ระยะเวลาที่เกิด ผลกระทบที่ได้รับ" style="min-height: 150px;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ระดับความเร่งด่วน <span class="required">*</span></label>
+                        <div class="urgency-levels">
+                            <div class="urgency-card level-critical">
+                                <input type="radio" id="urgency4" name="urgency" value="เร่งด่วนมาก" required>
+                                <label for="urgency4">🚨 เร่งด่วนมาก<br><small>(อันตราย/เสี่ยงต่อชีวิต)</small></label>
+                            </div>
+                            <div class="urgency-card level-high">
+                                <input type="radio" id="urgency3" name="urgency" value="เร่งด่วน">
+                                <label for="urgency3">⚠️ เร่งด่วน<br><small>(ส่งผลกระทบรายวัน)</small></label>
+                            </div>
+                            <div class="urgency-card level-medium">
+                                <input type="radio" id="urgency2" name="urgency" value="ปานกลาง">
+                                <label for="urgency2">📋 ปานกลาง<br><small>(ควรแก้ไขเร็วๆ นี้)</small></label>
+                            </div>
+                            <div class="urgency-card level-low">
+                                <input type="radio" id="urgency1" name="urgency" value="ไม่เร่งด่วน">
+                                <label for="urgency1">✅ ไม่เร่งด่วน<br><small>(ทั่วไป)</small></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: ข้อมูลเพิ่มเติม -->
+                <div class="section">
+                    <div class="section-title">
+                        <span class="section-number">4</span>
+                        <span>ข้อมูลเพิ่มเติม</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ท่านเคยแจ้งหน่วยงานใดมาก่อนหรือไม่ <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="reported1" name="previousReport" value="ยังไม่เคยแจ้ง" required>
+                                <label for="reported1">ยังไม่เคยแจ้ง</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="reported2" name="previousReport" value="เคยแจ้งแล้ว">
+                                <label for="reported2">เคยแจ้งแล้ว (โปรดระบุหน่วยงานด้านล่าง)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="previousReportGroup" style="display: none;">
+                        <label for="previousReportDetails">หน่วยงานที่เคยแจ้งและผลการดำเนินการ</label>
+                        <textarea id="previousReportDetails" name="previousReportDetails" placeholder="เช่น แจ้งเทศบาลเมื่อวันที่ xx/xx/xxxx แต่ยังไม่มีการแก้ไข"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="suggestions">ข้อเสนอแนะหรือแนวทางแก้ไขที่ต้องการ</label>
+                        <textarea id="suggestions" name="suggestions" placeholder="ท่านมีความคิดเห็นหรือข้อเสนอแนะเกี่ยวกับการแก้ไขปัญหานี้อย่างไร"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="images">แนบรูปภาพประกอบ (ถ้ามี)</label>
+                        <span class="label-hint">รูปภาพจะถูกแปลงและส่งไปพร้อมอีเมล (สูงสุด 3 รูป, ขนาดเล็กกว่า 500KB ต่อรูป)</span>
+                        <input type="file" id="images" name="images" accept="image/*" multiple style="padding: 0.5rem;">
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn">📨 ส่งเรื่องร้องเรียน</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="footer">
+            <div class="footer-icon">🙏</div>
+            <p><strong>ขอบคุณที่ไว้วางใจ</strong></p>
+            <p>ทีมงาน สส.เฉลิมพงศ์ แสงดี พรรคประชาชน</p>
+            <p>จะติดตามดำเนินการและแจ้งผลกลับโดยเร็วที่สุด</p>
+        </div>
+    </div>
+
+    <script>
+        // ⚙️ การตั้งค่า - ใส่อีเมลที่จะรับเรื่องร้องเรียน
+        const RECEIVER_EMAIL = 'am.kaweekate@gmail.com'; // ⚠️ เปลี่ยนเป็นอีเมลของคุณ
+
+        // Area dropdown handler
+        document.getElementById('area').addEventListener('change', function() {
+            const otherAreaGroup = document.getElementById('otherAreaGroup');
+            const otherAreaInput = document.getElementById('otherArea');
+            if (this.value === 'อื่นๆ') {
+                otherAreaGroup.style.display = 'block';
+                otherAreaInput.required = true;
+            } else {
+                otherAreaGroup.style.display = 'none';
+                otherAreaInput.required = false;
+                otherAreaInput.value = '';
+            }
+        });
+
+        // Category dropdown handler
+        document.getElementById('category').addEventListener('change', function() {
+            const otherCategoryGroup = document.getElementById('otherCategoryGroup');
+            const otherCategoryInput = document.getElementById('otherCategory');
+            if (this.value === 'อื่นๆ') {
+                otherCategoryGroup.style.display = 'block';
+                otherCategoryInput.required = true;
+            } else {
+                otherCategoryGroup.style.display = 'none';
+                otherCategoryInput.required = false;
+                otherCategoryInput.value = '';
+            }
+        });
+
+        // Previous report handler
+        document.querySelectorAll('input[name="previousReport"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const previousReportGroup = document.getElementById('previousReportGroup');
+                if (this.value === 'เคยแจ้งแล้ว') {
+                    previousReportGroup.style.display = 'block';
+                } else {
+                    previousReportGroup.style.display = 'none';
+                    document.getElementById('previousReportDetails').value = '';
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('complaintForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '⏳ กำลังส่งข้อมูล...';
+
+            try {
+                const formData = new FormData(this);
+                
+                // รวบรวมข้อมูล
+                const data = {
+                    timestamp: new Date().toLocaleString('th-TH', { 
+                        timeZone: 'Asia/Bangkok',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }),
+                    fullname: formData.get('fullname'),
+                    phone: formData.get('phone'),
+                    email: formData.get('email'),
+                    contact: formData.get('contact') || '-',
+                    area: formData.get('area'),
+                    otherArea: formData.get('otherArea') || '-',
+                    address: formData.get('address'),
+                    mapLink: formData.get('mapLink') || '-',
+                    category: formData.get('category'),
+                    otherCategory: formData.get('otherCategory') || '-',
+                    details: formData.get('details'),
+                    urgency: formData.get('urgency'),
+                    previousReport: formData.get('previousReport'),
+                    previousReportDetails: formData.get('previousReportDetails') || '-',
+                    suggestions: formData.get('suggestions') || '-'
+                };
+
+                // แปลงรูปภาพเป็น base64
+                const imageFiles = document.getElementById('images').files;
+                const images = [];
+                
+                for (let i = 0; i < Math.min(imageFiles.length, 3); i++) {
+                    const file = imageFiles[i];
+                    if (file.size > 500000) {
+                        alert(`รูปภาพ ${file.name} มีขนาดใหญ่เกิน 500KB กรุณาเลือกรูปที่เล็กกว่า`);
+                        continue;
+                    }
+                    
+                    const base64 = await new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.readAsDataURL(file);
+                    });
+                    
+                    images.push({
+                        name: file.name,
+                        data: base64
+                    });
+                }
+
+                // สร้างเนื้อหาอีเมล
+                const emailBody = `
+วันที่-เวลาที่แจ้ง: ${data.timestamp}
+
+=== ข้อมูลผู้แจ้ง ===
+ชื่อ-นามสกุล: ${data.fullname}
+เบอร์โทร: ${data.phone}
+อีเมล: ${data.email}
+Line/Facebook: ${data.contact}
+
+=== สถานที่เกิดปัญหา ===
+พื้นที่: ${data.area}${data.otherArea !== '-' ? ' (' + data.otherArea + ')' : ''}
+ที่อยู่: ${data.address}
+Google Maps: ${data.mapLink}
+
+=== รายละเอียดปัญหา ===
+หมวดหมู่: ${data.category}${data.otherCategory !== '-' ? ' (' + data.otherCategory + ')' : ''}
+ความเร่งด่วน: ${data.urgency}
+รายละเอียด:
+${data.details}
+
+=== ข้อมูลเพิ่มเติม ===
+เคยแจ้งหน่วยงานมาก่อน: ${data.previousReport}
+${data.previousReportDetails !== '-' ? 'รายละเอียด: ' + data.previousReportDetails : ''}
+
+ข้อเสนอแนะ: ${data.suggestions}
+
+${images.length > 0 ? `จำนวนรูปภาพแนบ: ${images.length} รูป` : 'ไม่มีรูปภาพแนบ'}
+                `.trim();
+
+                // สร้าง mailto link
+                const subject = encodeURIComponent(`[ร้องเรียน] ${data.category} - ${data.area} (${data.urgency})`);
+                const body = encodeURIComponent(emailBody);
+                const mailtoLink = `mailto:${RECEIVER_EMAIL}?subject=${subject}&body=${body}`;
+
+                // เปิดโปรแกรมอีเมล
+                window.location.href = mailtoLink;
+
+                // แสดงข้อความสำเร็จ
+                const successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Reset form
+                setTimeout(() => {
+                    this.reset();
+                    successMessage.style.display = 'none';
+                }, 5000);
+
+                console.log('ข้อมูลที่ส่ง:', data);
+                if (images.length > 0) {
+                    console.log('รูปภาพ:', images);
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    </script>
+</body>
+</html>
