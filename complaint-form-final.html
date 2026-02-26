@@ -716,7 +716,7 @@
 
                     <div class="form-group">
                         <label for="images">แนบรูปภาพประกอบ (ถ้ามี)</label>
-                        <span class="label-hint">รูปภาพจะถูกบันทึกใน Google Drive (สูงสุด 5 รูป, ขนาดเล็กกว่า 2MB ต่อรูป)</span>
+                        <span class="label-hint">รูปภาพจะถูกบันทึกใน Google Drive (สูงสุด 5 รูป, ขนาดเล็กกว่า 10MB ต่อรูป)</span>
                         <input type="file" id="images" name="images" accept="image/*" multiple style="padding: 0.5rem;">
                     </div>
                 </div>
@@ -827,8 +827,8 @@
                 
                 for (let i = 0; i < Math.min(imageFiles.length, 5); i++) {
                     const file = imageFiles[i];
-                    if (file.size > 2000000) {
-                        alert(`รูปภาพ ${file.name} มีขนาดใหญ่เกิน 2MB กรุณาเลือกรูปที่เล็กกว่า`);
+                    if (file.size > 10000000) {
+                        alert(`รูปภาพ ${file.name} มีขนาดใหญ่เกิน 10MB กรุณาเลือกรูปที่เล็กกว่า`);
                         continue;
                     }
                     
